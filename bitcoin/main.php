@@ -17,6 +17,8 @@ class bitcoin{
 
         $this->blockchain = new blockchain\blockchain($this);
         $this->generating = new generating\generating($this);
+        $this->raw_transaction = new raw_transaction\raw_transaction($this);
+        $this->util = new utils\util($this);
 
         /*
         check these :
@@ -57,5 +59,5 @@ class bitcoin{
         return $decoded_response['result'];
     }
 
-    public $blockchain, $generating;
+    public $blockchain, $generating, $raw_transaction, $util;
 }

@@ -3,98 +3,130 @@ namespace bitcoin\blockchain;
 
 use bitcoin;
 
+
 class blockchain {
+    function __construct(bitcoin\bitcoin $bitcoin_instance){
+        $this->block = new blocks($bitcoin_instance);
+
+        $this->chain = new chains($bitcoin_instance);
+
+        $this->mem_pool = new mem_pools($bitcoin_instance);
+
+        $this->tx_out = new tx_outs($bitcoin_instance);
+    }
+
+    public $block, $chain, $mem_pool, $tx_out;
+}
+#region bruhN2
+class blocks {
     private bitcoin\bitcoin $bitcoin_instance;
 
     function __construct(bitcoin\bitcoin $bitcoin_instance){
         $this->bitcoin_instance = $bitcoin_instance;
     }
 
-    #region blocks
-    function get_best_block_hash(){
+    function best_hash(){
         return bitcoin\blockchain\get_best_block_hash($this->bitcoin_instance);
     }
 
-    function get_block($blockhash, $verbosity = 0){
+    function get($blockhash, $verbosity = 0){
         return bitcoin\blockchain\get_block($this->bitcoin_instance, $blockhash, $verbosity);
     }
 
-    function get_block_count(){
+    function count(){
         return bitcoin\blockchain\get_block_count($this->bitcoin_instance);
     }
 
-    function get_block_hash($height){
+    function hash($height){
         return bitcoin\blockchain\get_block_hash($this->bitcoin_instance, $height);
     }
 
-    function get_block_header($blockhash, $verbose = false){
+    function header($blockhash, $verbose = false){
         return bitcoin\blockchain\get_block_header($this->bitcoin_instance, $blockhash, $verbose);
     }
 
-    function get_block_stats($hash_or_height, $stats = null){
+    function stats($hash_or_height, $stats = null){
         return bitcoin\blockchain\get_block_stats($this->bitcoin_instance, $hash_or_height, $stats);
     }
-    #endregion
+}
 
-    #region chains
-    function get_blockchain_info(){
+class chains{
+    private bitcoin\bitcoin $bitcoin_instance;
+
+    function __construct(bitcoin\bitcoin $bitcoin_instance){
+        $this->bitcoin_instance = $bitcoin_instance;
+    }
+
+    function info(){
         return bitcoin\blockchain\get_blockchain_info($this->bitcoin_instance);
     }
 
-    function get_chain_tips(){
+    function tips(){
         return bitcoin\blockchain\get_chain_tips($this->bitcoin_instance);
     }
 
-    function get_chain_tx_stats($nblocks = null, $blockhash = null){
+    function tx_stats($nblocks = null, $blockhash = null){
         return bitcoin\blockchain\get_chain_tx_stats($this->bitcoin_instance, $nblocks, $blockhash);
     }
 
-    function verify_chain($check_level = 3, $nblocks = 6){
+    function verify($check_level = 3, $nblocks = 6){
         return bitcoin\blockchain\verify_chain($this->bitcoin_instance, $check_level, $nblocks);
     }
-    #endregion
+}
 
-    #region mem_pool
-    function get_mem_pool_ancestors($tx_id, $verbose = false){
+class mem_pools{
+    private bitcoin\bitcoin $bitcoin_instance;
+
+    function __construct(bitcoin\bitcoin $bitcoin_instance){
+        $this->bitcoin_instance = $bitcoin_instance;
+    }
+
+    function ancestors($tx_id, $verbose = false){
         return bitcoin\blockchain\get_mem_pool_ancestors($this->bitcoin_instance, $tx_id, $verbose);
     }
 
-    function get_mem_pool_descendants($tx_id, $verbose = false){
+    function descendants($tx_id, $verbose = false){
         return bitcoin\blockchain\get_mem_pool_descendants($this->bitcoin_instance, $tx_id, $verbose);
     }
 
-    function get_mem_pool_entry($tx_id){
+    function entry($tx_id){
         return bitcoin\blockchain\get_mem_pool_entry($this->bitcoin_instance, $tx_id);
     }
 
-    function get_mem_pool_info(){
+    function info(){
         return bitcoin\blockchain\get_mem_pool_info($this->bitcoin_instance);
     }
 
-    function get_raw_mem_pool($verbose = false){
+    function get_raw($verbose = false){
         return bitcoin\blockchain\get_raw_mem_pool($this->bitcoin_instance, $verbose);
     }
 
-    function save_mem_pool(){
+    function save(){
         bitcoin\blockchain\save_mem_pool($this->bitcoin_instance);
     }
-    #endregion
+}
 
-    #region tx_out
-    function get_tx_out($tx_id, $vout_number, $include_mem_pool = false){
+class tx_outs{
+    private bitcoin\bitcoin $bitcoin_instance;
+
+    function __construct(bitcoin\bitcoin $bitcoin_instance){
+        $this->bitcoin_instance = $bitcoin_instance;
+    }
+
+    function get($tx_id, $vout_number, $include_mem_pool = false){
         return bitcoin\blockchain\get_tx_out($this->bitcoin_instance, $tx_id, $vout_number, $include_mem_pool);
     }
 
-    function get_tx_out_proof(array $tx_id){
+    function get_proof(array $tx_id){
         return bitcoin\blockchain\get_tx_out_proof($this->bitcoin_instance, $tx_id);
     }
 
-    function get_tx_out_set_info(){
+    function get_set_info(){
         return bitcoin\blockchain\get_tx_out_set_info($this->bitcoin_instance);
     }
 
-    function verify_tx_out_proof($proof){
+    function verify_proof($proof){
         return bitcoin\blockchain\verify_tx_out_proof($this->bitcoin_instance, $proof);
     }
-    #endregion
 }
+#endregion
