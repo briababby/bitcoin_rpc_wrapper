@@ -6,19 +6,19 @@ use bitcoin;
 
 class blockchain {
     function __construct(bitcoin\bitcoin $bitcoin_instance){
-        $this->block = new blocks($bitcoin_instance);
+        $this->block = new i_block($bitcoin_instance);
 
-        $this->chain = new chains($bitcoin_instance);
+        $this->chain = new i_chain($bitcoin_instance);
 
-        $this->mem_pool = new mem_pools($bitcoin_instance);
+        $this->mem_pool = new i_mem_pool($bitcoin_instance);
 
-        $this->tx_out = new tx_outs($bitcoin_instance);
+        $this->tx_out = new i_tx_out($bitcoin_instance);
     }
 
     public $block, $chain, $mem_pool, $tx_out;
 }
-#region bruhN2
-class blocks {
+#region org
+class i_block {
     private bitcoin\bitcoin $bitcoin_instance;
 
     function __construct(bitcoin\bitcoin $bitcoin_instance){
@@ -50,7 +50,7 @@ class blocks {
     }
 }
 
-class chains{
+class i_chain {
     private bitcoin\bitcoin $bitcoin_instance;
 
     function __construct(bitcoin\bitcoin $bitcoin_instance){
@@ -74,7 +74,7 @@ class chains{
     }
 }
 
-class mem_pools{
+class i_mem_pool {
     private bitcoin\bitcoin $bitcoin_instance;
 
     function __construct(bitcoin\bitcoin $bitcoin_instance){
@@ -106,7 +106,7 @@ class mem_pools{
     }
 }
 
-class tx_outs{
+class i_tx_out {
     private bitcoin\bitcoin $bitcoin_instance;
 
     function __construct(bitcoin\bitcoin $bitcoin_instance){

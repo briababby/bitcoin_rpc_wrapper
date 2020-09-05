@@ -9,7 +9,9 @@ $patterns = array(
     $dir.'raw_transaction/responses/*.php',
     $dir.'util/*.php',
     $dir.'util/responses/*.php',
-    $dir.'generating/*.php'
+    $dir.'generating/*.php',
+    $dir.'wallet/*.php',
+    $dir.'wallet/responses/*.php'
 );
 
 foreach($patterns as $pattern)

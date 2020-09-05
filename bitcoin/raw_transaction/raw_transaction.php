@@ -8,12 +8,8 @@ function combine_raw_transaction(bitcoin\bitcoin $bitcoin_instance, array $txs){
 }
 
 function create_raw_transaction(bitcoin\bitcoin $bitcoin_instance, array $inputs, array $outputs, $locktime = 0, $replaceable = false) {
-    $json_inputs = json_encode($inputs);
-
-    $json_outputs = json_encode($outputs);
-
     return (string)$bitcoin_instance->do_request('createrawtransaction',
-        [$json_inputs, $json_outputs, $locktime, $replaceable]);
+        [json_encode($inputs), json_encode($outputs), $locktime, $replaceable]);
 }
 
 function decode_raw_transaction(bitcoin\bitcoin $bitcoin_instance, $hex_string, $is_witness = null){
