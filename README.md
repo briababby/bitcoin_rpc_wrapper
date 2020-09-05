@@ -1,7 +1,7 @@
 # bitcoin_rpc_wrapper
  not complete php wrapper for the rpc bitcoin api
 
-```
+```php
 <?php
 //example! :
 
