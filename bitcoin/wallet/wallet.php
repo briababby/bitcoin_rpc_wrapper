@@ -43,7 +43,7 @@ function list_wallets(bitcoin\bitcoin $bitcoin_instance){
 function load_wallet(bitcoin\bitcoin $bitcoin_instance, $file_name){
     $json_response = $bitcoin_instance->do_request('loadwallet', [$file_name]);
 
-    if(isset($json_response['warning']))
+    if(isset($json_response['warning']) && $json_response['warning'] != null)
         trigger_error($json_response['warning'], E_USER_WARNING);
 
     return (string)$json_response['name'];
