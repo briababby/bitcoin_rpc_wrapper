@@ -4,6 +4,7 @@
     "description": "WIP php bitcoin rpc wrapper",
     "keywords": ["bitcoin","bitcoin rpc","cryptocurrency","wallets", "blockchain"],
     "homepage": "https://github.com/Finguimbrine/bitcoin_rpc_wrapper",
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
