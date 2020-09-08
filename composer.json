@@ -1,0 +1,19 @@
+{
+    "name": "finguimbrine/bitcoin-rpc-wrapper",
+    "type": "library",
+    "description": "WIP php bitcoin rpc wrapper",
+    "keywords": ["bitcoin","bitcoin rpc","cryptocurrency","wallets", "blockchain"],
+    "homepage": "https://github.com/Finguimbrine/bitcoin_rpc_wrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabio A",
+            "email": "fingupaypal@gmail.com",
+            "homepage": "http://example.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"bitcoin\\": "bitcoin"}
+    }
+}
